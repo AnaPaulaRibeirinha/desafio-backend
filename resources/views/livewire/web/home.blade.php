@@ -1,35 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Listagem de Filmes</title>
-    <link rel="stylesheet" href="{{ asset('app/public/css/app.css') }}">
+     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('../css/app.css') }}">
 </head>
 <body>
     <div>
         <h1>Listagem de Filmes</h1>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Resumo</th>
-                    <th>Capa</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($films as $film)
-                    <tr>
-                        <td>{{ $film->title }}</td>
-                        <td>{{ $film->summary }}</td>
-                        <td><img src="{{ $film->cover }}" alt="{{ $film->title }}"></td>
-                        <td>
-                            <a href="{{ route('films.show', $film->id) }}" class="btn btn-info">Ver</a>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
 
+        
+        {{-- <a href="{{ route('films.create') }}" class="btn btn-primary mb-3">Cadastrar Filme</a> --}}
+
+        <div class="film-grid">
+            @foreach($films as $film)
+                <div class="film-card">
+                    <img src="{{ $film->cover }}" alt="{{ $film->title }}" class="film-cover">
+                    <h2 class="film-title">{{ $film->title }}</h2>
+                    <p class="film-summary">{{ $film->summary }}</p>
+                   
+                    {{-- <a href="{{ route('films.show', $film->id) }}" class="btn btn-info">Ver Detalhes</a> --}}
+                </div>
+            @endforeach
+        </div>
         {{ $films->links() }}
     </div>
 </body>
