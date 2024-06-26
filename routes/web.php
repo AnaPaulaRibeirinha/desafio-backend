@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Web\Home;
+use App\Livewire\Web\CreateFilm;
+use App\Livewire\Web\ViewFilm;
 
-Route::get('/', \App\Livewire\Web\Home::class)->name('home');
-Route::get('/cadastrar', \App\Livewire\Web\CreateFilm::class)->name('create');
-Route::get('/ver', \App\Livewire\Web\ViewFilm::class)->name('see');
+
+Route::get('/', Home::class)->name('films.index');
+Route::get('/films/create', CreateFilm::class)->name('films.create');
+Route::get('/films/{id}', ViewFilm::class)->name('films.show');
+
